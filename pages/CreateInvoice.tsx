@@ -1,10 +1,10 @@
 
 import React, { useState, useMemo } from 'react';
-import { useData } from '../context/DataContext';
-import { InvoiceItem, Invoice } from '../types';
+import { useData } from '../context/DataContext.tsx';
+import { InvoiceItem, Invoice } from '../types.ts';
 import { Plus, Trash2, Save, Eye } from 'lucide-react';
-import { InvoicePreview } from '../components/InvoicePreview';
-import { generateInvoicePDF } from '../utils/pdfGenerator';
+import { InvoicePreview } from '../components/InvoicePreview.tsx';
+import { generateInvoicePDF } from '../utils/pdfGenerator.ts';
 
 interface CreateInvoiceProps {
   onSave: () => void;
@@ -43,7 +43,6 @@ const CreateInvoice: React.FC<CreateInvoiceProps> = ({ onSave }) => {
     setInvoiceItems(prev => prev.map(item => {
       if (item.id === id) {
         const newItem = { ...item, [field]: value };
-        // Recalculate
         const rate = field === 'rate' ? Number(value) : item.rate;
         const qty = field === 'qty' ? Number(value) : item.qty;
         const cgstP = field === 'cgstPercent' ? Number(value) : item.cgstPercent;
@@ -97,7 +96,7 @@ const CreateInvoice: React.FC<CreateInvoiceProps> = ({ onSave }) => {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 no-print">
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold text-slate-900">Create New Invoice</h1>
@@ -123,7 +122,6 @@ const CreateInvoice: React.FC<CreateInvoiceProps> = ({ onSave }) => {
 
       {!showPreview ? (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Forms */}
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
               <h3 className="text-lg font-bold border-b pb-2">Client Details</h3>
@@ -131,7 +129,7 @@ const CreateInvoice: React.FC<CreateInvoiceProps> = ({ onSave }) => {
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-500 uppercase">Customer Name</label>
                   <input 
-                    className="w-full px-4 py-2 bg-slate-50 border border-slate-100 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none" 
+                    className="w-full px-4 py-2 bg-slate-50 border border-slate-100 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none font-bold" 
                     value={formData.customerName}
                     onChange={(e) => setFormData({...formData, customerName: e.target.value})}
                   />
@@ -222,7 +220,6 @@ const CreateInvoice: React.FC<CreateInvoiceProps> = ({ onSave }) => {
             </div>
           </div>
 
-          {/* Right Column - Summary */}
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
               <h3 className="text-lg font-bold border-b pb-2">Financials</h3>
@@ -243,23 +240,20 @@ const CreateInvoice: React.FC<CreateInvoiceProps> = ({ onSave }) => {
                   <span className="font-black">Total</span>
                   <span className="font-black text-emerald-600">₹{calculations.grandTotal.toFixed(2)}</span>
                 </div>
-                <p className="text-[10px] text-slate-400 text-right italic">Round off applied: {calculations.roundOff}</p>
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <div className="flex flex-col items-center bg-slate-100 p-8 rounded-3xl overflow-auto max-h-[1000px]">
-          <div id="invoice-preview-container">
-            <div id="invoice-preview">
-              <InvoicePreview invoice={currentInvoiceData} />
-            </div>
+        <div className="flex flex-col items-center bg-slate-100 p-8 rounded-3xl overflow-auto max-h-[85vh]">
+          <div id="invoice-preview">
+            <InvoicePreview invoice={currentInvoiceData} />
           </div>
           <button 
             onClick={() => generateInvoicePDF(currentInvoiceData)}
-            className="mt-8 px-10 py-4 bg-slate-900 text-white rounded-2xl font-black shadow-2xl hover:bg-black transition-all"
+            className="mt-8 px-12 py-4 bg-slate-900 text-white rounded-2xl font-black shadow-2xl hover:bg-black transition-all hover:scale-105 active:scale-95 no-print"
           >
-            Download PDF Now
+            Download Official Invoice
           </button>
         </div>
       )}

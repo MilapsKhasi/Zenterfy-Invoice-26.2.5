@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useData } from '../context/DataContext';
+import { useData } from '../context/DataContext.tsx';
 import { IndianRupee, Users, FileText, Clock } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
@@ -35,7 +35,6 @@ const Dashboard: React.FC = () => {
         ))}
       </div>
 
-      {/* Placeholder for charts or recent activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
           <h2 className="text-lg font-bold mb-4">Recent Invoices</h2>

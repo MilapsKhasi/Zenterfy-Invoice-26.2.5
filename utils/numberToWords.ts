@@ -31,16 +31,16 @@ export function numberToWords(amount: number): string {
   if (amount === 0) return 'Zero Rupees Only';
   
   const rupees = Math.floor(amount);
-  const paise = Math.round((amount - rupees) * 100);
+  const paise = Math.round((amount - Math.floor(amount)) * 100);
   
-  let result = convertToWords(rupees);
+  let result = convertToWords(rupees).trim();
   if (!result) result = 'Zero';
   
-  result += ' Rupees';
+  let finalString = result + ' Rupees';
   
   if (paise > 0) {
-    result += ' and ' + convertToWords(paise) + ' Paise';
+    finalString += ' and ' + convertToWords(paise).trim() + ' Paise';
   }
   
-  return result + ' Only';
+  return finalString + ' Only';
 }

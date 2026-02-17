@@ -26,7 +26,6 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children, activePage, onNa
 
   return (
     <div className="flex min-h-screen bg-slate-50">
-      {/* Sidebar */}
       <aside className="w-64 bg-slate-900 text-white fixed h-full z-10 no-print">
         <div className="p-6 flex items-center gap-3 border-b border-slate-800">
           <div className="bg-emerald-500 p-2 rounded-lg">
@@ -53,7 +52,6 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children, activePage, onNa
         </nav>
       </aside>
 
-      {/* Main Content */}
       <main className="flex-1 ml-64 p-8 print:m-0 print:p-0">
         <div className="max-w-6xl mx-auto print:max-w-none">
           {children}

@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
-import { useData } from '../context/DataContext';
-import { Eye, Download, Search } from 'lucide-react';
-import { generateInvoicePDF } from '../utils/pdfGenerator';
+import { useData } from '../context/DataContext.tsx';
+import { Download, Search } from 'lucide-react';
+import { generateInvoicePDF } from '../utils/pdfGenerator.ts';
 
 const SalesRegister: React.FC = () => {
   const { invoices } = useData();

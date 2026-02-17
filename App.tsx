@@ -1,12 +1,12 @@
 
 import React, { useState } from 'react';
-import { AppLayout } from './components/layout/AppLayout';
-import Dashboard from './pages/Dashboard';
-import CreateInvoice from './pages/CreateInvoice';
-import SalesRegister from './pages/SalesRegister';
-import Customers from './pages/Customers';
-import Items from './pages/Items';
-import { DataProvider } from './context/DataContext';
+import { AppLayout } from './components/layout/AppLayout.tsx';
+import Dashboard from './pages/Dashboard.tsx';
+import CreateInvoice from './pages/CreateInvoice.tsx';
+import SalesRegister from './pages/SalesRegister.tsx';
+import Customers from './pages/Customers.tsx';
+import Items from './pages/Items.tsx';
+import { DataProvider } from './context/DataContext.tsx';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<string>('dashboard');

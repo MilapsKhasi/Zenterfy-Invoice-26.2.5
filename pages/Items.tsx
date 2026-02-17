@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { useData } from '../context/DataContext';
-import { Package, Plus } from 'lucide-react';
+import { useData } from '../context/DataContext.tsx';
+import { Plus } from 'lucide-react';
 
 const Items: React.FC = () => {
   const { items } = useData();
