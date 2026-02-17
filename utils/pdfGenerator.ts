@@ -1,5 +1,4 @@
-
-import { Invoice } from '../types';
+import { Invoice } from '../types.ts';
 
 /**
  * Uses a hidden iframe technique to print the component exactly as rendered.
@@ -39,10 +38,11 @@ export const generateInvoicePDF = (invoice: Invoice) => {
             #invoice-preview {
               box-shadow: none !important;
               border: none !important;
+              margin: 0 auto;
             }
           </style>
         </head>
-        <body onload="window.print(); window.close();">
+        <body onload="setTimeout(() => { window.print(); window.close(); }, 500);">
           <div id="invoice-preview">
             ${content}
           </div>

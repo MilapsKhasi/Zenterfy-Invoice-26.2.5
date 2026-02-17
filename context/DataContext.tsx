@@ -1,6 +1,5 @@
-
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Customer, Item, Invoice } from '../types';
+import { Customer, Item, Invoice } from '../types.ts';
 
 interface DataContextType {
   customers: Customer[];
